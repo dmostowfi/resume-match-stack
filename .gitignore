@@ -1,0 +1,11 @@
+# Node.js dependencies
+node_modules/
+
+# Python virtual environment
+.venv/
+
+# Environment variables / secrets
+.env
+
+# OS-specific clutter
+.DS_Store
