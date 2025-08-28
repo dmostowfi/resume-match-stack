@@ -18,8 +18,8 @@ app.listen(PORT, () => {
 });
 
 
-// POST /api/match -> forward request to FastAPI /match
-app.post('/api/match', async (req, res) => {
+// POST /fastapi/match -> forward request to FastAPI /match
+app.post('/fastapi/match', async (req, res) => {
   try {
     // Basic validation
     const { resume, jd } = req.body || {};
