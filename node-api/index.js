@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const AI_BASE_URL = 'http://localhost:8000'; // Base URL of your FastAPI service
+const AI_BASE_URL = process.env.AI_BASE_URL || 'http://localhost:8000'; // Base URL of your FastAPI service
 
 // Middleware
 app.use(express.json());
