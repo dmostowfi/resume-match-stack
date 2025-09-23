@@ -2,7 +2,9 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from sentence_transformers import SentenceTransformer, util
 from typing import List
+import os
 
+model_name = os.getenv("MODEL_NAME", "sentence-transformers/all-MiniLM-L6-v2")
 model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 app = FastAPI()
 
