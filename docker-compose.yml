@@ -12,5 +12,34 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  ai-service:
+    build: ./ai-service
+    container_name: ai_service
+    environment:
+      MODEL_NAME: sentence-transformers/all-MiniLM-L6-v2
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  node-api:
+    build: ./node-api
+    container_name: node_api
+    environment:
+      # Note: inside Docker, containers reach each other by service name
+      AI_BASE_URL: http://ai-service:8000
+      PGHOST: db
+      PGPORT: 5432
+      PGDATABASE: resume_db
+      PGUSER: app
+      PGPASSWORD: app
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - ai-service
+      - db
+
 volumes:
   pgdata:

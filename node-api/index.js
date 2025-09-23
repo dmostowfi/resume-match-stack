@@ -4,12 +4,15 @@ require('dotenv').config({ path: path.join(__dirname, '../.env') });
 //console.log(process.env)
 
 const express = require('express');
+const cors = require('cors');
 const { Pool } = require('pg');
-
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const AI_BASE_URL = process.env.AI_BASE_URL || 'http://localhost:8000'; // Base URL of your FastAPI service
+
+// Enable CORS for all routes
+app.use(cors());
 
 // Database connection
 const pool = new Pool({
